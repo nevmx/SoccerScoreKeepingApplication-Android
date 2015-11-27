@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SoccerScoreKeepingApp-Android</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_create_match">CreateMatchActivity</string>
+    <string name="title_activity_live_input">LiveInputActivity</string>
+    <string name="title_activity_batch_input">BatchInputActivity</string>
+</resources>
