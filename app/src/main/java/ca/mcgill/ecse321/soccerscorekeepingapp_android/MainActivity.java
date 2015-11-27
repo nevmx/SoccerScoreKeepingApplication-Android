@@ -40,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
         mt.createTeam("Team4");
         mt.createTeam("Team5");
         mt.createTeam("Team6");
+
+        mt.createPlayer("PlayerOne", "Team1");
+        mt.createPlayer("PlayerTwo", "Team1");
+        mt.createPlayer("PlayerThree", "Team1");
+        mt.createPlayer("PlayerOneOne", "Team2");
+        mt.createPlayer("PlayerTwoTwo", "Team2");
+        mt.createPlayer("PlayerThreeThree", "Team2");
     }
 
     @Override

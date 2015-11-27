@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ca.mcgill.ecse321.soccerscorekeepingapp_android.BatchInputActivity">
+    <item
+        android:id="@+id/action_add_shot"
+        android:orderInCategory="100"
+        android:title="Add Shot"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_infraction"
+        android:orderInCategory="100"
+        android:title="Add Infraction"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_save_data"
+        android:orderInCategory="100"
+        android:title="Save Data"
+        app:showAsAction="never" />
+</menu>
