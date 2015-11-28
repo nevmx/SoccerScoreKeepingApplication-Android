@@ -86,4 +86,10 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MODE, mode);
         startActivity(intent);
     }
+
+    /* Called when manager button is pressed */
+    public void openManagerActivity(View view) {
+        Intent intent = new Intent(this, ManagerActivity.class);
+        startActivity(intent);
+    }
 }

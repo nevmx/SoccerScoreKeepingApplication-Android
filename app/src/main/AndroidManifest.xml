@@ -30,6 +30,10 @@
             android:name=".BatchInputActivity"
             android:label="@string/title_activity_batch_input"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ManagerActivity"
+            android:label="@string/title_activity_manager"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
