@@ -35,32 +35,32 @@
         android:layout_alignEnd="@+id/textView"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:onClick="openManagerActivity" />
+        android:onClick="authenticateManager" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LIVE INPUT MODE"
-        android:id="@+id/liveInputButtob"
+        android:id="@+id/liveInputButton"
         android:layout_marginTop="41dp"
         android:layout_below="@+id/button2"
         android:layout_alignRight="@+id/button2"
         android:layout_alignEnd="@+id/button2"
         android:layout_alignLeft="@+id/button2"
         android:layout_alignStart="@+id/button2"
-        android:onClick="openCreateMatchPageForLive" />
+        android:onClick="authenticateScoreKeeper" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BATCH INPUT MODE"
         android:id="@+id/batchInputButton"
-        android:layout_below="@+id/liveInputButtob"
-        android:layout_alignLeft="@+id/liveInputButtob"
-        android:layout_alignStart="@+id/liveInputButtob"
-        android:layout_alignRight="@+id/liveInputButtob"
-        android:layout_alignEnd="@+id/liveInputButtob"
-        android:onClick="openCreateMatchPageForBatch" />
+        android:layout_below="@+id/liveInputButton"
+        android:layout_alignLeft="@+id/liveInputButton"
+        android:layout_alignStart="@+id/liveInputButton"
+        android:layout_alignRight="@+id/liveInputButton"
+        android:layout_alignEnd="@+id/liveInputButton"
+        android:onClick="authenticateScoreKeeper" />
 
     <Button
         android:layout_width="wrap_content"
