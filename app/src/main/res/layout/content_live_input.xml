@@ -12,4 +12,89 @@
     tools:context="ca.mcgill.ecse321.soccerscorekeepingapp_android.LiveInputActivity"
     tools:showIn="@layout/activity_live_input">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Live Mode"
+        android:id="@+id/textView2"
+        android:textColor="#000000"
+        android:textSize="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START MATCH"
+        android:id="@+id/startMatchButton"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="onStartMatchClick" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chronometer"
+        android:enabled="true"
+        android:layout_below="@+id/startMatchButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD INFRACTION"
+        android:id="@+id/addInfractionButton"
+        android:layout_below="@+id/startMatchButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="49dp"
+        android:layout_alignRight="@+id/startMatchButton"
+        android:layout_alignEnd="@+id/startMatchButton"
+        android:enabled="false"
+        android:onClick="onAddInfractionClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD SHOT"
+        android:id="@+id/addShotButton"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/addInfractionButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/addInfractionButton"
+        android:layout_alignEnd="@+id/addInfractionButton"
+        android:enabled="false"
+        android:onClick="onAddShotClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="END GAME"
+        android:id="@+id/endGameButton"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/addShotButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/addShotButton"
+        android:layout_alignEnd="@+id/addShotButton"
+        android:enabled="false"
+        android:onClick="onEndGameClick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Match not started."
+        android:id="@+id/score"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="#e74d4d" />
+
 </RelativeLayout>
