@@ -19,9 +19,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse321.soccerscorekeeping.controller.controller;
+import ca.mcgill.ecse321.soccerscorekeeping.model.Infraction;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Manager;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Match;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Player;
@@ -30,17 +32,24 @@ public class BatchInputActivity extends AppCompatActivity {
 
     Match match;
     String[] teams;
-    Object[] teamOnePlayers;
-    Object[] teamTwoPlayers;
+    List<Player> teamOnePlayers;
+    List<Player> teamTwoPlayers;
 
     String[] teamOnePlayerNames;
     String[] teamTwoPlayerNames;
 
+    ArrayList<String[]> allData;
+
+    /*
+        The following variables are for the functions that get user input and set the variables to create
+        a match.
+     */
     String team_inner;
     String player_inner;
     String[] players_inner;
     String card_color_inner;
     boolean penalty_kick_inner;
+    boolean goal_inner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +64,12 @@ public class BatchInputActivity extends AppCompatActivity {
         controller c = new controller();
         Intent fromLast = getIntent();
 
+        allData = new ArrayList<>();
+
         String teamOne = fromLast.getStringExtra(CreateMatchActivity.TEAM_ONE);
         String teamTwo = fromLast.getStringExtra(CreateMatchActivity.TEAM_TWO);
+
+        match = c.createMatch(teamOne, teamTwo);
 
         teams = new String[2];
         teams[0] = teamOne;
@@ -65,21 +78,25 @@ public class BatchInputActivity extends AppCompatActivity {
         //Get player lists
         Manager m = Manager.getInstance();
 
-        teamOnePlayers = m.getTeam(teams[0]).getPlayers().toArray();
-        teamTwoPlayers = m.getTeam(teams[1]).getPlayers().toArray();
+        teamOnePlayers = m.getTeam(teams[0]).getPlayers();
+        teamTwoPlayers = m.getTeam(teams[1]).getPlayers();
 
-        teamOnePlayerNames = new String[teamOnePlayers.length];
-        teamTwoPlayerNames = new String[teamTwoPlayers.length];
+        teamOnePlayerNames = new String[teamOnePlayers.size()];
+        teamTwoPlayerNames = new String[teamTwoPlayers.size()];
 
-        for (int i = 0; i < teamOnePlayers.length; i++) {
-            teamOnePlayerNames[i] = teamOnePlayers.toString();
+        int i = 0;
+
+        for (Player player : teamOnePlayers) {
+            teamOnePlayerNames[i] = player.getName();
+            i++;
         }
 
-        for (int i = 0; i < teamTwoPlayers.length; i++) {
-            teamTwoPlayerNames[i] = teamTwoPlayers.toString();
-        }
+        i = 0;
 
-        match = c.createMatch(teamOne, teamTwo);
+        for (Player player : teamTwoPlayers) {
+            teamTwoPlayerNames[i] = player.getName();
+            i++;
+        }
     }
 
     @Override
@@ -89,7 +106,7 @@ public class BatchInputActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean askForTeam() {
+    public boolean askForTeam(final String mode) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // get team
@@ -98,7 +115,7 @@ public class BatchInputActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         team_inner = teams[which];
-                        askForPlayer();
+                        askForPlayer(mode);
                     }
                 })
                 .create()
@@ -109,7 +126,7 @@ public class BatchInputActivity extends AppCompatActivity {
         return true;
     }
 
-    public boolean askForPlayer() {
+    public boolean askForPlayer(final String mode) {
 
         if (team_inner.equals(teams[0])) {
             players_inner = teamOnePlayerNames;
@@ -126,7 +143,37 @@ public class BatchInputActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         player_inner = players_inner[which];
-                        askForInfraction();
+                        if (mode.equals("i"))
+                            askForInfraction();
+                        else if (mode.equals("s"))
+                            askForGoal();
+                        else {
+                            // ...
+                        }
+                    }
+                })
+                .create()
+                .show();
+
+        return true;
+    }
+
+    public boolean askForGoal() {
+        // get goal or no
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Goal?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goal_inner = true;
+                        addRow(createShotArray(team_inner, player_inner, goal_inner));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goal_inner = false;
+                        addRow(createShotArray(team_inner, player_inner, goal_inner));
                     }
                 })
                 .create()
@@ -143,7 +190,7 @@ public class BatchInputActivity extends AppCompatActivity {
                 .setPositiveButton("Red", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        card_color_inner = "red";
+                        card_color_inner = "Red";
                         askForPenaltyShot();
 
                     }
@@ -151,7 +198,7 @@ public class BatchInputActivity extends AppCompatActivity {
                 .setNegativeButton("Yellow", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        card_color_inner = "yellow";
+                        card_color_inner = "Yellow";
                         askForPenaltyShot();
                     }
                 })
@@ -164,28 +211,140 @@ public class BatchInputActivity extends AppCompatActivity {
     public boolean askForPenaltyShot() {
         //get penalty kick
 
-        final controller c = new controller();
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Penalty kick?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         penalty_kick_inner = true;
-                        c.createInfraction(player_inner, match, card_color_inner, penalty_kick_inner);
+                        addRow(createInfractionArray(team_inner, player_inner, card_color_inner, penalty_kick_inner));
+
+                        // c.createInfraction(player_inner, match, card_color_inner, penalty_kick_inner);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         penalty_kick_inner = false;
-                        c.createInfraction(player_inner, match, card_color_inner, penalty_kick_inner);
+                        addRow(createInfractionArray(team_inner, player_inner, card_color_inner, penalty_kick_inner));
+                        // c.createInfraction(player_inner, match, card_color_inner, penalty_kick_inner);
                     }
                 })
                 .create()
                 .show();
+
+
+
         return true;
+    }
+
+    // Create an array of strings that will be passed to addRow
+    public String[] createInfractionArray(String iTeam, String iPlayer, String iCard, boolean iKick) {
+        String iKickString;
+
+        if (iKick)
+            iKickString = "Yes";
+        else
+            iKickString = "No";
+
+        String[] infraction = {iTeam, iPlayer, "I", iCard, iKickString, ""};
+
+        allData.add(infraction);
+
+        return infraction;
+    }
+
+    // Create an array of strings that will be passed to addRow
+    public String[] createShotArray(String gTeam, String gPlayer, boolean gGoal) {
+        String gGoalString;
+
+        if (gGoal)
+            gGoalString = "Yes";
+        else
+            gGoalString = "No";
+
+        String[] shot = {gTeam, gPlayer, "S", "", "", gGoalString};
+
+        allData.add(shot);
+
+        return shot;
+
+    }
+
+
+    /*
+        !!! The argument passed must be of length 6 !!!
+     */
+    public void addRow(String[] strings) {
+
+        TableLayout stk = (TableLayout) findViewById(R.id.table_main);
+        TableRow tableRow = new TableRow(this);
+
+        TextView teamtv = new TextView(this);
+        teamtv.setText(strings[0]);
+        teamtv.setTextColor(Color.WHITE);
+        teamtv.setGravity(Gravity.CENTER);
+        tableRow.addView(teamtv);
+
+        TextView playertv = new TextView(this);
+        playertv.setText(strings[1]);
+        playertv.setTextColor(Color.WHITE);
+        playertv.setGravity(Gravity.CENTER);
+        tableRow.addView(playertv);
+
+        TextView typetv = new TextView(this);
+        typetv.setText(strings[2]);
+        typetv.setTextColor(Color.WHITE);
+        typetv.setGravity(Gravity.CENTER);
+        tableRow.addView(typetv);
+
+        TextView cardColortv = new TextView(this);
+        cardColortv.setText(strings[3]);
+        cardColortv.setTextColor(Color.WHITE);
+        cardColortv.setGravity(Gravity.CENTER);
+        tableRow.addView(cardColortv);
+
+        TextView penKicktv = new TextView(this);
+        penKicktv.setText(strings[4]);
+        penKicktv.setTextColor(Color.WHITE);
+        penKicktv.setGravity(Gravity.CENTER);
+        tableRow.addView(penKicktv);
+
+        TextView goaltv = new TextView(this);
+        goaltv.setText(strings[5]);
+        goaltv.setTextColor(Color.WHITE);
+        goaltv.setGravity(Gravity.CENTER);
+        tableRow.addView(goaltv);
+
+        stk.addView(tableRow);
+
+        Toast.makeText(this, strings[2] + " added", Toast.LENGTH_LONG).show();
+    }
+
+    public void saveData() {
+        controller c = new controller();
+        for (String[] oneEvent : allData) {
+            if (oneEvent[2].equals("I")) {
+                boolean penaltyKick;
+                if (oneEvent[4].equals("Yes"))
+                    penaltyKick = true;
+                else
+                    penaltyKick = false;
+                c.createInfraction(oneEvent[1], match, oneEvent[3].toUpperCase(), penaltyKick);
+            }
+            else {
+                boolean goal;
+                if (oneEvent[5].equals("Yes"))
+                    goal = true;
+                else
+                    goal = false;
+                c.createShot(oneEvent[1], match, goal);
+            }
+        }
+        c.chooseWinner(match);
+        Toast.makeText(this, "Data saved", Toast.LENGTH_LONG).show();
+        this.finish();
+
     }
 
     @Override
@@ -193,18 +352,15 @@ public class BatchInputActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.action_add_infraction:
 
-                askForTeam();
-
-
-
-
-
+                askForTeam("i");
                 return true;
 
             case R.id.action_add_shot:
+                askForTeam("s");
                 return true;
 
             case R.id.action_save_data:
+                saveData();
                 return true;
 
             default:
@@ -215,48 +371,38 @@ public class BatchInputActivity extends AppCompatActivity {
     public void init() {
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         TableRow tbrow0 = new TableRow(this);
+
         TextView tv0 = new TextView(this);
-        tv0.setText(" Sl.No ");
+        tv0.setText(" Team ");
         tv0.setTextColor(Color.WHITE);
         tbrow0.addView(tv0);
+
         TextView tv1 = new TextView(this);
-        tv1.setText(" Product ");
+        tv1.setText(" Player ");
         tv1.setTextColor(Color.WHITE);
         tbrow0.addView(tv1);
+
+        TextView tv11 = new TextView(this);
+        tv11.setText(" Type ");
+        tv11.setTextColor(Color.WHITE);
+        tbrow0.addView(tv11);
+
         TextView tv2 = new TextView(this);
-        tv2.setText(" Unit Price ");
+        tv2.setText(" Card Clr ");
         tv2.setTextColor(Color.WHITE);
         tbrow0.addView(tv2);
+
         TextView tv3 = new TextView(this);
-        tv3.setText(" Stock Remaining ");
+        tv3.setText(" Pnl Kick ");
         tv3.setTextColor(Color.WHITE);
         tbrow0.addView(tv3);
-        stk.addView(tbrow0);
-        for (int i = 0; i < 25; i++) {
-            TableRow tbrow = new TableRow(this);
-            TextView t1v = new TextView(this);
-            t1v.setText("" + i);
-            t1v.setTextColor(Color.WHITE);
-            t1v.setGravity(Gravity.CENTER);
-            tbrow.addView(t1v);
-            TextView t2v = new TextView(this);
-            t2v.setText("Product " + i);
-            t2v.setTextColor(Color.WHITE);
-            t2v.setGravity(Gravity.CENTER);
-            tbrow.addView(t2v);
-            TextView t3v = new TextView(this);
-            t3v.setText("Rs." + i);
-            t3v.setTextColor(Color.WHITE);
-            t3v.setGravity(Gravity.CENTER);
-            tbrow.addView(t3v);
-            TextView t4v = new TextView(this);
-            t4v.setText("" + i * 15 / 32 * 10);
-            t4v.setTextColor(Color.WHITE);
-            t4v.setGravity(Gravity.CENTER);
-            tbrow.addView(t4v);
-            stk.addView(tbrow);
-        }
 
+        TextView tv4 = new TextView(this);
+        tv4.setText(" Goal ");
+        tv4.setTextColor(Color.WHITE);
+        tbrow0.addView(tv4);
+
+        stk.addView(tbrow0);
     }
 
 }
