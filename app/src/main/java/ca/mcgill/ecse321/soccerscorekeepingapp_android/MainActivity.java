@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import ca.mcgill.ecse321.soccerscorekeeping.admin.authentication;
 import ca.mcgill.ecse321.soccerscorekeeping.admin.managerTools;
+import ca.mcgill.ecse321.soccerscorekeeping.persistence.PersistenceSoccerScoreKeeping;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,21 +39,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        managerTools mt = new managerTools();
-
-        mt.createTeam("Team1");
-        mt.createTeam("Team2");
-        mt.createTeam("Team3");
-        mt.createTeam("Team4");
-        mt.createTeam("Team5");
-        mt.createTeam("Team6");
-
-        mt.createPlayer("PlayerOne", "Team1");
-        mt.createPlayer("PlayerTwo", "Team1");
-        mt.createPlayer("PlayerThree", "Team1");
-        mt.createPlayer("PlayerOneOne", "Team2");
-        mt.createPlayer("PlayerTwoTwo", "Team2");
-        mt.createPlayer("PlayerThreeThree", "Team2");
+        // Load soccer score XML file
+        PersistenceSoccerScoreKeeping.loadSoccerScores();
     }
 
     @Override
@@ -72,6 +60,37 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        else if (id == R.id.action_clear_data) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            final EditText input = new EditText(this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+            builder.setTitle("Enter manager password")
+                    .setView(input)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (authentication.authenticate(input.getText().toString().toCharArray())) {
+                                Toast.makeText(MainActivity.this, "All Data Cleared", Toast.LENGTH_LONG).show();
+
+                                // Delete data
+                                // TODO: Provide the ability to clear all score data
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Wrong password. Please try again.", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .create().show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -167,6 +186,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void openManagerActivity() {
         Intent intent = new Intent(this, ManagerActivity.class);
+        startActivity(intent);
+    }
+
+    /* Called when league analysis button is pressed */
+    private void openLeagueAnalysisMode(View view) {
+        Intent intent = new Intent(this, LeagueAnalysisActivity.class);
+        startActivity(intent);
+    }
+
+    /* Called when player analysis button is pressed */
+    private void openPlayerAnalysisMode(View view) {
+        Intent intent = new Intent(this, PlayerAnalysisActivity.class);
         startActivity(intent);
     }
 }

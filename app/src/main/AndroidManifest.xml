@@ -33,6 +33,14 @@
         <activity
             android:name=".ManagerActivity"
             android:label="@string/title_activity_manager"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LeagueAnalysisActivity"
+            android:label="@string/title_activity_league_analysis"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PlayerAnalysisActivity"
+            android:label="@string/title_activity_player_analysis"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
