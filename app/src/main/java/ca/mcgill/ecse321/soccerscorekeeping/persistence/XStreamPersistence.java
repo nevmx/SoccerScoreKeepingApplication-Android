@@ -1,15 +1,25 @@
 package ca.mcgill.ecse321.soccerscorekeeping.persistence;
 
+import android.content.Context;
+
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import com.thoughtworks.xstream.XStream;
 
+/*
+ * This class has been modified from the original "Java Swing" app because the methods used to read
+ * and write XML files are different for the Android internal storage.
+ * - Max Neverov 11/29/2015
+ */
+
 public class XStreamPersistence
 {
 	private static XStream xstream = new XStream();
 	private static String filename = "data.xml";
+	private static File filesDir = null;
 	
 	public static boolean saveToXMLwithXStream(Object obj)
 	{
@@ -18,7 +28,8 @@ public class XStreamPersistence
 		
 		try
 		{
-			FileWriter writer = new FileWriter(filename);
+			File file = new File(filesDir, filename);
+			FileWriter writer = new FileWriter(file);
 			writer.write(xml);
 			writer.close();
 			return true;
@@ -35,7 +46,8 @@ public class XStreamPersistence
 		xstream.setMode(XStream.ID_REFERENCES);
 		try
 		{
-			FileReader fileReader = new FileReader(filename);//load our xml file
+			File file = new File(filesDir, filename);
+			FileReader fileReader = new FileReader(file);//load our xml file
 			return xstream.fromXML(fileReader);
 		}
 		catch(IOException e)
@@ -53,5 +65,9 @@ public class XStreamPersistence
 	public static void setFilename(String fn)
 	{
 		filename=fn;
+	}
+
+	public static void setFilesDir(File dir) {
+		filesDir = dir;
 	}
 }

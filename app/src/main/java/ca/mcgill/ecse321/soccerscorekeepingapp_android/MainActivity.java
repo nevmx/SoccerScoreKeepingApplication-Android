@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Load soccer score XML file
-        PersistenceSoccerScoreKeeping.loadSoccerScores();
+        PersistenceSoccerScoreKeeping.loadSoccerScores(this);
     }
 
     @Override
