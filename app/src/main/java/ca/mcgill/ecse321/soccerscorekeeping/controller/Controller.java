@@ -8,9 +8,9 @@ import ca.mcgill.ecse321.soccerscorekeeping.model.Shot;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Team;
 import ca.mcgill.ecse321.soccerscorekeeping.persistence.XStreamPersistence;
 
-public class controller 
+public class Controller
 {
-	public controller()
+	public Controller()
 	{
 		
 	}

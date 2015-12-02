@@ -190,13 +190,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* Called when league analysis button is pressed */
-    private void openLeagueAnalysisMode(View view) {
+    public void openLeagueAnalysisMode(View view) {
         Intent intent = new Intent(this, LeagueAnalysisActivity.class);
         startActivity(intent);
     }
 
     /* Called when player analysis button is pressed */
-    private void openPlayerAnalysisMode(View view) {
+    public void openPlayerAnalysisMode(View view) {
         Intent intent = new Intent(this, PlayerAnalysisActivity.class);
         startActivity(intent);
     }

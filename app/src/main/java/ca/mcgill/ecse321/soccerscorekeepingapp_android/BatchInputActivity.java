@@ -5,15 +5,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,8 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.mcgill.ecse321.soccerscorekeeping.controller.controller;
-import ca.mcgill.ecse321.soccerscorekeeping.model.Infraction;
+import ca.mcgill.ecse321.soccerscorekeeping.controller.Controller;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Manager;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Match;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Player;
@@ -61,7 +56,7 @@ public class BatchInputActivity extends AppCompatActivity {
         init();
 
         // Start the match
-        controller c = new controller();
+        Controller c = new Controller();
         Intent fromLast = getIntent();
 
         allData = new ArrayList<>();
@@ -322,7 +317,7 @@ public class BatchInputActivity extends AppCompatActivity {
     }
 
     public void saveData() {
-        controller c = new controller();
+        Controller c = new Controller();
         for (String[] oneEvent : allData) {
             if (oneEvent[2].equals("I")) {
                 boolean penaltyKick;
