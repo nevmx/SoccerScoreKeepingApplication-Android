@@ -1,13 +1,19 @@
 package ca.mcgill.ecse321.soccerscorekeepingapp_android;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ca.mcgill.ecse321.soccerscorekeeping.controller.Controller;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Team;
@@ -33,6 +39,30 @@ public class LeagueAnalysisActivity extends AppCompatActivity {
 
     int sortingMode = 0;
 
+    // For dialogs
+    String[] sortModes = {"Points", "Goals", "Infractions"};
+    String[] showHowMany = {"5", "10", "20", "50"};
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_league_analysis, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_sort_by:
+                askForSortBy();
+                return true;
+            case R.id.action_change_number:
+                askForChangeNumber();
+                return true;
+            default:
+                return false;
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +84,42 @@ public class LeagueAnalysisActivity extends AppCompatActivity {
         displayTeamArray();
 
 
+    }
+
+    private void askForSortBy() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sort by...")
+                .setItems(sortModes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sortingMode = which + 1;
+                        updateTeamArray();
+                        clean();
+                        init();
+                        displayTeamArray();
+                        Toast.makeText(LeagueAnalysisActivity.this, "Table Updated", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .create()
+                .show();
+    }
+
+    private void askForChangeNumber() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("How many teams?")
+                .setItems(showHowMany, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        displayedTeams = Integer.parseInt(showHowMany[which]);
+                        updateTeamArray();
+                        clean();
+                        init();
+                        displayTeamArray();
+                        Toast.makeText(LeagueAnalysisActivity.this, "Table Updated", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .create()
+                .show();
     }
 
     // Sort, or redisplay the teams
@@ -170,6 +236,11 @@ public class LeagueAnalysisActivity extends AppCompatActivity {
         tbrow0.addView(tv2);
 
         stk.addView(tbrow0);
+    }
+
+    private void clean() {
+        TableLayout stk = (TableLayout) findViewById(R.id.table_main);
+        stk.removeAllViews();
     }
 
 }
