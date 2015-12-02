@@ -6,6 +6,10 @@ An XStream jar file is included in the APK file.
 ## Progress
 * Manager Mode: Complete
 * Batch and Live Input Modes: Complete
-* League and Player Analysis Modes: In progress (Player Analysis left)
+* League and Player Analysis Modes: Complete
 * Authentication: Complete
 * Persistence: Complete
+
+### TODO:
+* Download Scores Function: In Progress
+* Upload Scores Function: In Progress
