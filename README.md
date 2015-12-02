@@ -7,7 +7,7 @@ An XStream jar file is included in the APK file.
 * Manager Mode: Complete
 * Batch and Live Input Modes: Complete
 * League and Player Analysis Modes: Complete
-* Authentication: Complete
+* Username-Password Authentication: Complete
 * Persistence: Complete
 
 ### TODO:

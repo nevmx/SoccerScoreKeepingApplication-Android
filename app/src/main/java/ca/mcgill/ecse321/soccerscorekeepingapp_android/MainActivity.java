@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import ca.mcgill.ecse321.soccerscorekeeping.admin.authentication;
@@ -69,15 +70,26 @@ public class MainActivity extends AppCompatActivity {
         else if (id == R.id.action_clear_data) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-            final EditText input = new EditText(this);
-            input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            final EditText username = new EditText(this);
+            final EditText password = new EditText(this);
+            username.setInputType(InputType.TYPE_CLASS_TEXT);
+            username.setHint("Username");
+
+            password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            password.setHint("Password");
+
+            LinearLayout login = new LinearLayout(this);
+            login.setOrientation(LinearLayout.VERTICAL);
+            login.addView(username);
+            login.addView(password);
 
             builder.setTitle("Enter manager password")
-                    .setView(input)
+                    .setView(login)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (authentication.authenticate(input.getText().toString().toCharArray())) {
+                            authentication a = new authentication();
+                            if (a.authenticate(username.getText().toString(), password.getText().toString().toCharArray())) {
                                 Toast.makeText(MainActivity.this, "All Data Cleared", Toast.LENGTH_LONG).show();
 
                                 // Delete data
@@ -104,15 +116,26 @@ public class MainActivity extends AppCompatActivity {
     public void authenticateScoreKeeper(final View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        final EditText username = new EditText(this);
+        final EditText password = new EditText(this);
+        username.setInputType(InputType.TYPE_CLASS_TEXT);
+        username.setHint("Username");
+
+        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setHint("Password");
+
+        LinearLayout login = new LinearLayout(this);
+        login.setOrientation(LinearLayout.VERTICAL);
+        login.addView(username);
+        login.addView(password);
 
         builder.setTitle("Enter scorekeeper password")
-                .setView(input)
+                .setView(login)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (authentication.authenticateScoreKeeper(input.getText().toString().toCharArray())) {
+                        authentication a = new authentication();
+                        if (a.authenticateScoreKeeper(username.getText().toString(), password.getText().toString().toCharArray())) {
 
                             Toast.makeText(MainActivity.this, "Scorekeeper Mode Active", Toast.LENGTH_LONG).show();
 
@@ -161,15 +184,26 @@ public class MainActivity extends AppCompatActivity {
     public void authenticateManager(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        final EditText username = new EditText(this);
+        final EditText password = new EditText(this);
+        username.setInputType(InputType.TYPE_CLASS_TEXT);
+        username.setHint("Username");
 
-        builder.setTitle("Enter manager password")
-                .setView(input)
+        password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        password.setHint("Password");
+
+        LinearLayout login = new LinearLayout(this);
+        login.setOrientation(LinearLayout.VERTICAL);
+        login.addView(username);
+        login.addView(password);
+
+        builder.setTitle("Manager Login")
+                .setView(login)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (authentication.authenticate(input.getText().toString().toCharArray())) {
+                        authentication a = new authentication();
+                        if (a.authenticate(username.getText().toString(), password.getText().toString().toCharArray())) {
                             Toast.makeText(MainActivity.this, "Manager Mode Active", Toast.LENGTH_LONG).show();
                             openManagerActivity();
                         }

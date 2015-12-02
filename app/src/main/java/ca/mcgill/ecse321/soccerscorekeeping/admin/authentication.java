@@ -1,42 +1,51 @@
 package ca.mcgill.ecse321.soccerscorekeeping.admin;
 
-public class authentication 
+import java.util.HashMap;
+
+public class authentication
 {
-	final private static String managerPassword = "manager";
-	final private static String scoreKeeperPassword = "keeper";
-	
+	private static HashMap<String,String> userNames;
+
+
 	public authentication()
 	{
-		
+		userNames = new HashMap<String,String>();
+		userNames.put("owais","git");
+		userNames.put("npurdie","git");
+		userNames.put("jers","git");
+		userNames.put("nevmx","git");
+		userNames.put("mcintosh","bluejays");
+		userNames.put("walter","white");
+
 	}
-	
-	public static boolean authenticate(char[] password)
+
+	public boolean authenticate(String username,char[] password)
 	{
-		if(password.length!=managerPassword.length())
+		if(userNames.get(username)==null)
 		{
 			return false;
 		}
-		
+
 		for(int i=0;i<password.length;i++)
 		{
-			if(!(managerPassword.charAt(i)==password[i]))
+			if(!(userNames.get(username).charAt(i)==password[i]))
 			{
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	public static boolean authenticateScoreKeeper(char[] password)
+
+	public boolean authenticateScoreKeeper(String username,char[] password)
 	{
-		if(password.length!=scoreKeeperPassword.length())
+		if(userNames.get(username)==null)
 		{
 			return false;
 		}
-		
+
 		for(int i=0;i<password.length;i++)
 		{
-			if(!(scoreKeeperPassword.charAt(i)==password[i]))
+			if(!(userNames.get(username).charAt(i)==password[i]))
 			{
 				return false;
 			}
