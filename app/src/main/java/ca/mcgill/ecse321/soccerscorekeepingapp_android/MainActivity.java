@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        else if (id == R.id.action_download_scores) {
+
+        }
+
         else if (id == R.id.action_clear_data) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

@@ -9,6 +9,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_download_scores"
+        android:orderInCategory="100"
+        android:title="Download Scores"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_clear_data"
         android:orderInCategory="101"
         android:title="Clear All Data"

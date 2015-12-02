@@ -37,7 +37,7 @@ public class LeagueAnalysisActivity extends AppCompatActivity {
      *       3. Sort by infractions
      */
 
-    int sortingMode = 0;
+    int sortingMode = 1;
 
     // For dialogs
     String[] sortModes = {"Points", "Goals", "Infractions"};

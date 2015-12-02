@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ca.mcgill.ecse321.soccerscorekeepingapp_android.PlayerAnalysisActivity">
+    <item
+        android:id="@+id/action_sort_by"
+        android:orderInCategory="100"
+        android:title="Sort by..."
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_change_number"
+        android:orderInCategory="100"
+        android:title="Show more/less..."
+        app:showAsAction="never" />
+</menu>

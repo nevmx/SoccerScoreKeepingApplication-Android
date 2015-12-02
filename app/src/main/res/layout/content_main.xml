@@ -85,5 +85,5 @@
         android:layout_alignStart="@+id/button4"
         android:layout_alignRight="@+id/button4"
         android:layout_alignEnd="@+id/button4"
-        android:onClick="openLeagueAnalysisMode" />
+        android:onClick="openPlayerAnalysisMode" />
 </RelativeLayout>
