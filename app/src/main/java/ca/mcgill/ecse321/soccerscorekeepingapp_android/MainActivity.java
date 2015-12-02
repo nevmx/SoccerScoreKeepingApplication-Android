@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.soccerscorekeepingapp_android;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +17,33 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import ca.mcgill.ecse321.soccerscorekeeping.admin.authentication;
 import ca.mcgill.ecse321.soccerscorekeeping.admin.managerTools;
+import ca.mcgill.ecse321.soccerscorekeeping.model.Manager;
 import ca.mcgill.ecse321.soccerscorekeeping.persistence.PersistenceSoccerScoreKeeping;
+import ca.mcgill.ecse321.soccerscorekeeping.persistence.XStreamPersistence;
 
 public class MainActivity extends AppCompatActivity {
 
     public final static String MODE = "ca.mcgill.ecse321.soccerscorekeepingapp-android.MODE";
+
+    // Variables for downloading scores
+    String url = "http://cs.mcgill.ca/~jselwy/soccerscores.xml";
+    RequestQueue queue;
+
+    // Loading circle
+    ProgressDialog pg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else if (id == R.id.action_download_scores) {
-
+            downloadScores();
         }
 
         else if (id == R.id.action_clear_data) {
@@ -93,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "All Data Cleared", Toast.LENGTH_LONG).show();
 
                                 // Delete data
-                                // TODO: Provide the ability to clear all score data
+                                Manager m = Manager.getInstance();
+                                m.delete();
                             }
                             else {
                                 Toast.makeText(MainActivity.this, "Wrong password. Please try again.", Toast.LENGTH_LONG).show();
@@ -110,6 +132,62 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /* Download soccerscores */
+    private void downloadScores() {
+        queue = Volley.newRequestQueue(this);
+
+        // Show a loading screen
+        pg = new ProgressDialog(this);
+        pg.setTitle("Loading");
+        pg.setMessage("Downloading scores...");
+        pg.setCancelable(false);
+        pg.show();
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        saveScores(response);
+                        pg.dismiss();
+                        Toast.makeText(MainActivity.this, "Scores Downloaded", Toast.LENGTH_LONG).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "Download Error, try again later.", Toast.LENGTH_LONG).show();
+            }
+        });
+        queue.add(stringRequest);
+    }
+
+    /* Save the scores that were downloaded */
+    public void saveScores(String scoreString) {
+        try
+        {
+            File filesDir = getFilesDir();
+            File file = new File(filesDir, "soccerscores.xml");
+            FileWriter writer = new FileWriter(file);
+            writer.write(scoreString);
+            writer.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        reloadScores();
+    }
+
+    /* Reload scores */
+    private void reloadScores() {
+        Manager m = Manager.getInstance();
+        m.delete();
+        // Reload
+        PersistenceSoccerScoreKeeping.loadSoccerScores(this);
+
     }
 
     /* Called when input mode selected */

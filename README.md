@@ -11,5 +11,5 @@ An XStream jar file is included in the APK file.
 * Persistence: Complete
 
 ### TODO:
-* Download Scores Function: In Progress
-* Upload Scores Function: In Progress
+* Download Scores Function: Complete
+* Upload Scores Function: In Progress [?]
