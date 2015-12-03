@@ -218,8 +218,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
-            uploadScores();
+        protected Void doInBackground(Void... urls) {
+            uploadScores(uploadURL);
             return null;
         }
 
@@ -233,9 +233,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /* Upload the XML score */
-    private void uploadScores() {
+    private void uploadScores(String url) {
         CloseableHttpClient httpclient = HttpClientBuilder.create().build();
-        HttpPost httppost = new HttpPost("http://cs.mcgill.ca/~jselwy/XMLUpload.php");
+        HttpPost httppost = new HttpPost(url);
 
         try {
             // Get the file and build the FileBody object

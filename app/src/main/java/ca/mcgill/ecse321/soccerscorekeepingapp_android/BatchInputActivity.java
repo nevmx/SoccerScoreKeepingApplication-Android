@@ -321,18 +321,12 @@ public class BatchInputActivity extends AppCompatActivity {
         for (String[] oneEvent : allData) {
             if (oneEvent[2].equals("I")) {
                 boolean penaltyKick;
-                if (oneEvent[4].equals("Yes"))
-                    penaltyKick = true;
-                else
-                    penaltyKick = false;
+                penaltyKick = oneEvent[4].equals("Yes");
                 c.createInfraction(oneEvent[1], match, oneEvent[3].toUpperCase(), penaltyKick);
             }
             else {
                 boolean goal;
-                if (oneEvent[5].equals("Yes"))
-                    goal = true;
-                else
-                    goal = false;
+                goal = oneEvent[5].equals("Yes");
                 c.createShot(oneEvent[1], match, goal);
             }
         }
