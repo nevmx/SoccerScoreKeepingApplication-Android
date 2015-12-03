@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,26 +25,39 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import cz.msebera.android.httpclient.HttpEntity;
+import cz.msebera.android.httpclient.client.ClientProtocolException;
+import cz.msebera.android.httpclient.client.ResponseHandler;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.entity.mime.MultipartEntityBuilder;
+import cz.msebera.android.httpclient.entity.mime.content.FileBody;
+import cz.msebera.android.httpclient.impl.client.BasicResponseHandler;
+import cz.msebera.android.httpclient.impl.client.CloseableHttpClient;
+import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import ca.mcgill.ecse321.soccerscorekeeping.admin.authentication;
-import ca.mcgill.ecse321.soccerscorekeeping.admin.managerTools;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Manager;
 import ca.mcgill.ecse321.soccerscorekeeping.persistence.PersistenceSoccerScoreKeeping;
-import ca.mcgill.ecse321.soccerscorekeeping.persistence.XStreamPersistence;
 
 public class MainActivity extends AppCompatActivity {
 
     public final static String MODE = "ca.mcgill.ecse321.soccerscorekeepingapp-android.MODE";
 
     // Variables for downloading scores
-    String url = "http://cs.mcgill.ca/~jselwy/soccerscores.xml";
+    String url = "http://cs.mcgill.ca/~jselwy/soccer.xml";
     RequestQueue queue;
+
+    // Vars for uploading scores
+    String uploadURL = "http://cs.mcgill.ca/~jselwy/XMLUpload.php";
 
     // Loading circle
     ProgressDialog pg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
         else if (id == R.id.action_download_scores) {
             downloadScores();
+        }
+
+        else if (id == R.id.action_upload_scores) {
+            new uploadScoresToServer().execute();
         }
 
         else if (id == R.id.action_clear_data) {
@@ -188,6 +206,73 @@ public class MainActivity extends AppCompatActivity {
         // Reload
         PersistenceSoccerScoreKeeping.loadSoccerScores(this);
 
+    }
+
+    private class uploadScoresToServer extends AsyncTask<Void, Void, Void> {
+        private final ProgressDialog pg = new ProgressDialog(MainActivity.this);
+
+        protected void onPreExecute() {
+            this.pg.setMessage("Loading...");
+            this.pg.setCancelable(false);
+            this.pg.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            uploadScores();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            if (pg.isShowing())
+                pg.dismiss();
+            Toast.makeText(MainActivity.this, "Scores Uploaded", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    /* Upload the XML score */
+    private void uploadScores() {
+        CloseableHttpClient httpclient = HttpClientBuilder.create().build();
+        HttpPost httppost = new HttpPost("http://cs.mcgill.ca/~jselwy/XMLUpload.php");
+
+        try {
+            // Get the file and build the FileBody object
+            File filesDir = getFilesDir();
+            File file = new File(filesDir, "soccerscores.xml");
+            FileBody bin = new FileBody(file);
+
+            // Build the multipartentity for the multipart/form-data upload
+            MultipartEntityBuilder reqEntity = MultipartEntityBuilder.create();
+
+            // "upload" is the value of the field PHP will look for
+            reqEntity.addPart("upload", bin);
+
+            // Assign the entity to the HttpPost object
+            HttpEntity entity = reqEntity.build();
+            httppost.setEntity(entity);
+
+            // This is for debug
+//            System.out.println("Requesting : " + httppost.getRequestLine());
+
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            // The response
+            String responseBody = httpclient.execute(httppost, responseHandler);
+
+            // Debug...
+//            System.out.println("responseBody : " + responseBody);
+
+            // close the client
+            httpclient.close();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /* Called when input mode selected */

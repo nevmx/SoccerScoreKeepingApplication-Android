@@ -15,6 +15,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_upload_scores"
+        android:orderInCategory="100"
+        android:title="Upload Scores"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_clear_data"
         android:orderInCategory="101"
         android:title="Clear All Data"

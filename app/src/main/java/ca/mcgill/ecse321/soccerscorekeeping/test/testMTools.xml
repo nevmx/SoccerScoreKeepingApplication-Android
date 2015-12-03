@@ -1,0 +1,41 @@
+<Manager id="1">
+  <teams id="2">
+    <Team id="3">
+      <name>Pakistan</name>
+      <points>0</points>
+      <players id="4">
+        <Player id="5">
+          <name>Younis</name>
+          <infractions id="6"/>
+          <shots id="7"/>
+          <team reference="3"/>
+        </Player>
+        <Player id="8">
+          <name>Imran</name>
+          <infractions id="9"/>
+          <shots id="10"/>
+          <team reference="3"/>
+        </Player>
+      </players>
+    </Team>
+    <Team id="11">
+      <name>England</name>
+      <points>0</points>
+      <players id="12">
+        <Player id="13">
+          <name>Finn</name>
+          <infractions id="14"/>
+          <shots id="15"/>
+          <team reference="11"/>
+        </Player>
+        <Player id="16">
+          <name>Cook</name>
+          <infractions id="17"/>
+          <shots id="18"/>
+          <team reference="11"/>
+        </Player>
+      </players>
+    </Team>
+  </teams>
+  <matches id="19"/>
+</Manager>

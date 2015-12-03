@@ -1,0 +1,98 @@
+<Manager id="1">
+  <teams id="2">
+    <Team id="3">
+      <name>Pakistan</name>
+      <points>3</points>
+      <players id="4">
+        <Player id="5">
+          <name>Younis</name>
+          <infractions id="6">
+            <Infraction id="7">
+              <type>RED</type>
+              <isPenaltyKick>true</isPenaltyKick>
+            </Infraction>
+          </infractions>
+          <shots id="8">
+            <Shot id="9">
+              <isGoal>true</isGoal>
+            </Shot>
+          </shots>
+          <team reference="3"/>
+        </Player>
+        <Player id="10">
+          <name>Imran</name>
+          <infractions id="11"/>
+          <shots id="12">
+            <Shot id="13">
+              <isGoal>false</isGoal>
+            </Shot>
+          </shots>
+          <team reference="3"/>
+        </Player>
+      </players>
+    </Team>
+    <Team id="14">
+      <name>England</name>
+      <points>0</points>
+      <players id="15">
+        <Player id="16">
+          <name>Finn</name>
+          <infractions id="17">
+            <Infraction id="18">
+              <type>RED</type>
+              <isPenaltyKick>false</isPenaltyKick>
+            </Infraction>
+          </infractions>
+          <shots id="19">
+            <Shot id="20">
+              <isGoal>false</isGoal>
+            </Shot>
+          </shots>
+          <team reference="14"/>
+        </Player>
+        <Player id="21">
+          <name>Cook</name>
+          <infractions id="22">
+            <Infraction id="23">
+              <type>YELLOW</type>
+              <isPenaltyKick>true</isPenaltyKick>
+            </Infraction>
+            <Infraction id="24">
+              <type>YELLOW</type>
+              <isPenaltyKick>false</isPenaltyKick>
+            </Infraction>
+          </infractions>
+          <shots id="25">
+            <Shot id="26">
+              <isGoal>false</isGoal>
+            </Shot>
+          </shots>
+          <team reference="14"/>
+        </Player>
+      </players>
+    </Team>
+  </teams>
+  <matches id="27">
+    <Match id="28">
+      <name>Pakistan v England</name>
+      <goals1>1</goals1>
+      <goals2>0</goals2>
+      <teams id="29">
+        <Team reference="3"/>
+        <Team reference="14"/>
+      </teams>
+      <shots id="30">
+        <Shot reference="9"/>
+        <Shot reference="13"/>
+        <Shot reference="20"/>
+        <Shot reference="26"/>
+      </shots>
+      <infractions id="31">
+        <Infraction reference="7"/>
+        <Infraction reference="23"/>
+        <Infraction reference="18"/>
+        <Infraction reference="24"/>
+      </infractions>
+    </Match>
+  </matches>
+</Manager>
