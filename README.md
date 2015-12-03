@@ -12,4 +12,4 @@ An XStream jar file is included in the APK file.
 
 ### TODO:
 * Download Scores Function: Complete
-* Upload Scores Function: In Progress [?]
+* Upload Scores Function: Complete
