@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Load soccer score XML file
-        PersistenceSoccerScoreKeeping.loadSoccerScores(this);
+//        PersistenceSoccerScoreKeeping.loadSoccerScores(this);
+        reloadScores();
     }
 
     @Override
@@ -151,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         saveScores(response);
+                        reloadScores();
                         pg.dismiss();
                         Toast.makeText(MainActivity.this, "Scores Downloaded", Toast.LENGTH_LONG).show();
                     }
@@ -177,8 +179,6 @@ public class MainActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
-        reloadScores();
     }
 
     /* Reload scores */
