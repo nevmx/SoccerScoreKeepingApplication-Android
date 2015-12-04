@@ -1,0 +1,122 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:2:1-50:12
+	package
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:3:5-62
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:5:5-6:54
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:6:9-51
+application
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:8:5-48:19
+MERGED from [com.android.support:appcompat-v7:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:22:5-20
+MERGED from [SoccerScoreKeepingApp-Android:volley:unspecified] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/SoccerScoreKeepingApp-Android/volley/unspecified/AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:11:9-41
+	android:supportsRtl
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:12:9-35
+	android:allowBackup
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:9:9-35
+	android:icon
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:10:9-43
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:13:9-40
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.MainActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:14:9-23:20
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:16:13-45
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:17:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:15:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:19:17-69
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:21:27-74
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.CreateMatchActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:24:9-27:59
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:26:13-64
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:27:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:25:13-48
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.LiveInputActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:28:9-31:59
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:30:13-62
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:31:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:29:13-46
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.BatchInputActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:32:9-35:59
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:34:13-63
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:35:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:33:13-47
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.ManagerActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:36:9-39:59
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:38:13-59
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:39:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:37:13-44
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.LeagueAnalysisActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:40:9-43:59
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:42:13-67
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:43:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:41:13-51
+activity#ca.mcgill.ecse321.soccerscorekeepingapp_android.PlayerAnalysisActivity
+ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:44:9-47:68
+	android:label
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:46:13-67
+	android:theme
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:47:13-56
+	android:name
+		ADDED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml:45:13-51
+uses-sdk
+INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.1] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/AndroidManifest.xml:20:5-43
+MERGED from [SoccerScoreKeepingApp-Android:volley:unspecified] /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/build/intermediates/exploded-aar/SoccerScoreKeepingApp-Android/volley/unspecified/AndroidManifest.xml:7:5-43
+	android:targetSdkVersion
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/mxnev/AndroidStudioProjects/SoccerScoreKeepingApp-Android/app/src/main/AndroidManifest.xml
