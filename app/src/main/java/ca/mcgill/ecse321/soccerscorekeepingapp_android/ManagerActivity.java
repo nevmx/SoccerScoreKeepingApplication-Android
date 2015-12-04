@@ -49,9 +49,8 @@ public class ManagerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Init
-        mt = new managerTools();
+//        mt = new managerTools();
         m = Manager.getInstance();
-
     }
 
     public void onCreateTeamButtonClick(View view) {
@@ -152,6 +151,7 @@ public class ManagerActivity extends AppCompatActivity {
     }
 
     private void createTeam(String teamName) {
+        mt = new managerTools();
         String error = mt.createTeam(teamName);
         if (error != null) {
             Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
@@ -162,6 +162,7 @@ public class ManagerActivity extends AppCompatActivity {
     }
 
     private void removeTeam(String teamName) {
+        mt = new managerTools();
         String error = mt.deleteTeam(teamName);
         if (error != null) {
             Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
@@ -182,6 +183,7 @@ public class ManagerActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        mt = new managerTools();
                         String error = mt.createPlayer(input.getText().toString(), teamName);
                         if (error != null) {
                             Toast.makeText(ManagerActivity.this, "Error: " + error, Toast.LENGTH_LONG).show();
@@ -222,6 +224,7 @@ public class ManagerActivity extends AppCompatActivity {
                 .setItems(playerNames, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        mt = new managerTools();
                         String error = mt.deletePlayer(playerNames[which], teamName);
                         if (error != null) {
                             Toast.makeText(ManagerActivity.this, "Error: " + error, Toast.LENGTH_LONG).show();
