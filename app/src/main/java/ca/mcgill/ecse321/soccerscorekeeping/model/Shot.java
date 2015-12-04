@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.soccerscorekeeping.model;
 
 // line 41 "../../../../../soccerscorekeeping.ump"
 // line 76 "../../../../../soccerscorekeeping.ump"
-public class Shot
+public class  Shot
 {
 
   //------------------------
@@ -23,6 +23,8 @@ public class Shot
   {
     isGoal = aIsGoal;
   }
+
+  public Shot(){}
 
   //------------------------
   // INTERFACE

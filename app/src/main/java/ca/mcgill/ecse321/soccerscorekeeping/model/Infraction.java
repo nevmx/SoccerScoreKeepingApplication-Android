@@ -5,6 +5,7 @@ package ca.mcgill.ecse321.soccerscorekeeping.model;
 
 // line 35 "../../../../../soccerscorekeeping.ump"
 // line 71 "../../../../../soccerscorekeeping.ump"
+
 public class Infraction
 {
 
@@ -19,6 +20,10 @@ public class Infraction
   //------------------------
   // CONSTRUCTOR
   //------------------------
+
+  public Infraction () {
+
+  }
 
   public Infraction(String aType, boolean aIsPenaltyKick)
   {

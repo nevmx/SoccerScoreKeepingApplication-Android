@@ -1,13 +1,13 @@
 package ca.mcgill.ecse321.soccerscorekeeping.persistence;
 
-import android.content.Context;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.reflection.FieldDictionary;
+import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 
 /*
  * This class has been modified from the original "Java Swing" app because the methods used to read
@@ -17,12 +17,15 @@ import com.thoughtworks.xstream.XStream;
 
 public class XStreamPersistence
 {
-	private static XStream xstream = new XStream();
+	private static XStream xstream = new XStream(new PureJavaReflectionProvider(
+			new FieldDictionary(new SequenceFieldKeySorter())));
 	private static String filename = "data.xml";
 	private static File filesDir = null;
-	
+
+
 	public static boolean saveToXMLwithXStream(Object obj)
 	{
+
 		xstream.setMode(XStream.ID_REFERENCES);
 		String xml = xstream.toXML(obj); //save our xml file
 		

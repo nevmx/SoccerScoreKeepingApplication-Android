@@ -4,8 +4,15 @@
 package ca.mcgill.ecse321.soccerscorekeeping.model;
 import java.util.*;
 
+import ca.mcgill.ecse321.soccerscorekeeping.persistence.XMLSequence;
+
 // line 3 "../../../../../soccerscorekeeping.ump"
 // line 46 "../../../../../soccerscorekeeping.ump"
+
+@XMLSequence({
+        "teams",
+        "matches"
+})
 public class Manager
 {
 

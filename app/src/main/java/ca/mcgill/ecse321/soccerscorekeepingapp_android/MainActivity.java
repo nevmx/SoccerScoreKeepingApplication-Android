@@ -41,6 +41,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import ca.mcgill.ecse321.soccerscorekeeping.admin.authentication;
+import ca.mcgill.ecse321.soccerscorekeeping.admin.managerTools;
 import ca.mcgill.ecse321.soccerscorekeeping.model.Manager;
 import ca.mcgill.ecse321.soccerscorekeeping.persistence.PersistenceSoccerScoreKeeping;
 
@@ -76,10 +77,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Load soccer score XML file
-//        PersistenceSoccerScoreKeeping.loadSoccerScores(this);
         reloadScores();
     }
-
+;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

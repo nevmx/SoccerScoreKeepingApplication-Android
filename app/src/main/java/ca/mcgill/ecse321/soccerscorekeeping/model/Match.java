@@ -6,6 +6,7 @@ import java.util.*;
 
 // line 10 "../../../../../soccerscorekeeping.ump"
 // line 52 "../../../../../soccerscorekeeping.ump"
+
 public class Match
 {
 
@@ -26,6 +27,10 @@ public class Match
   //------------------------
   // CONSTRUCTOR
   //------------------------
+
+  public Match() {
+
+  }
 
   public Match(String aName, int aGoals1, int aGoals2, Team... allTeams)
   {

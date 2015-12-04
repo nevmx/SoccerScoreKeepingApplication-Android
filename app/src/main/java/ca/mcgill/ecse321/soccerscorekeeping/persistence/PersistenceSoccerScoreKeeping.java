@@ -18,17 +18,18 @@ import ca.mcgill.ecse321.soccerscorekeeping.model.Team;
  * - Max Neverov 11/29/2015
  */
 
-public class PersistenceSoccerScoreKeeping 
+public class PersistenceSoccerScoreKeeping
 {
 	public static void initializeXStream(File filesDir)
 	{
 		XStreamPersistence.setFilename("soccerscores.xml");
 		XStreamPersistence.setAlias("Infraction", Infraction.class);
 		XStreamPersistence.setAlias("Manager",Manager.class);
+		XStreamPersistence.setAlias("Team",Team.class);
 		XStreamPersistence.setAlias("Match",Match.class);
 		XStreamPersistence.setAlias("Player",Player.class);
 		XStreamPersistence.setAlias("Shot",Shot.class);
-		XStreamPersistence.setAlias("Team",Team.class);
+
 
 		XStreamPersistence.setFilesDir(filesDir);
 	}
