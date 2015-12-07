@@ -15,4 +15,6 @@ This is an Android port of the [SoccerScoreKeeper](github.com/ahmadowais123/Socc
 
 ## Notes
   X-Stream serializes objects in an alphabetical order in the XML string. This made working with the XML file more complicated than needed to be. A fix was used to restore the usual order, where the objects are serialized in the order that they were declared in.
+  
+  
   Apache HttpComponents is no longer compatible to use on Android API 21 and up. A patched modified library was used that restores the functionality of HttpComponents under Android.
